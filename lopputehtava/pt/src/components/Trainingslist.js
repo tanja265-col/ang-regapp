@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 
+import moment from 'moment';
+
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
@@ -9,19 +11,52 @@ function Trainingslist() {
 
   useEffect(() => {
     getTrainings();
-  }, []);
+  });
 
   const getTrainings = () => {
-    fetch('https://customerrest.herokuapp.com/api/trainings')
+    fetch('https://customerrest.herokuapp.com/gettrainings')
       .then((response) => response.json())
-      .then((data) => setTrainings(data.content))
+      .then((res) => setTrainings(res))
+      .then((res) => console.log(trainings))
       .catch((err) => console.error(err));
+  };
+
+  const deleteTraining = (params) => {
+    if (window.confirm('Are you sure?')) {
+      fetch(params.value, {
+        method: 'DELETE',
+      })
+        .then((_) => getTrainings())
+        .catch((err) => console.error(err));
+    }
   };
 
   const columns2 = [
     { field: 'activity', sortable: true, filter: true },
-    { field: 'date', sortable: true, filter: true },
+    {
+      field: 'date',
+      sortable: true,
+      filter: true,
+    },
     { field: 'duration', sortable: true, filter: true },
+    {
+      width: '200',
+      headerName: 'Customer´s lastname',
+      field: 'customer.lastname',
+    },
+    {
+      width: '200',
+      headerName: 'Customer´s firstname',
+      field: 'customer.firstname',
+    },
+    {
+      headerName: '',
+      field: 'links',
+      width: 90,
+      cellRendererFramework: (params) => (
+        <button onClick={() => deleteTraining(params)}>Delete</button>
+      ),
+    },
   ];
 
   return (
@@ -29,7 +64,7 @@ function Trainingslist() {
       Trainings
       <div
         className="ag-theme-material"
-        style={{ height: 600, width: '80%', margin: 'auto' }}
+        style={{ height: 600, width: '90%', margin: 'auto' }}
       >
         <AgGridReact
           rowData={trainings}
