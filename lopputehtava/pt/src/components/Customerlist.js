@@ -135,7 +135,6 @@ function Customerlist() {
           <Tabs value={value} onChange={handleChange}>
             <Tab value="one" label="Customers" />
             <Tab value="two" label="Trainings" />
-            <Tab value="three" label="Calendar" />
           </Tabs>
         </AppBar>
       </div>

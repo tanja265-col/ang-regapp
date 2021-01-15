@@ -5,6 +5,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import moment from 'moment';
 
 function AddTraining(props) {
   const [training, setTraining] = useState({
@@ -16,6 +17,7 @@ function AddTraining(props) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
+    setTraining({ ...training, customer: props.params.value });
     setOpen(true);
   };
 
@@ -28,7 +30,10 @@ function AddTraining(props) {
   };
 
   const handleSave = () => {
-    props.addTraining(training);
+    props.addTraining({
+      ...training,
+      date: moment(training.date._d).toISOString(),
+    });
     handleClose();
   };
 

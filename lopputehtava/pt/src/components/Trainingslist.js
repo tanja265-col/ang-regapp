@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 
-import moment from 'moment';
-
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
@@ -22,10 +20,14 @@ function Trainingslist() {
   };
 
   const deleteTraining = (params) => {
+    console.log(params.data.id);
     if (window.confirm('Are you sure?')) {
-      fetch(params.value, {
-        method: 'DELETE',
-      })
+      fetch(
+        'https://customerrest.herokuapp.com/api/trainings/' + params.data.id,
+        {
+          method: 'DELETE',
+        }
+      )
         .then((_) => getTrainings())
         .catch((err) => console.error(err));
     }
