@@ -1,0 +1,19 @@
+<h1>Angularin reititys</h1>
+<!--routerLink on angularin "href". Hakasulut tarvitaan jos on dynaaminen reitti -->
+<a routerLink="/home">Homepage</a> |
+<a [routerLink]="['/other', 1234]">Otherpage</a> |
+<!-- linkkiparametrit ovat taulukossa -->
+<!-- Siirtymisen toiseen näkymään voi tehdä myös navigate() -metodilla-->
+<input type="button" value="Otherpage" (click)="navigateToOther()" /> |
+<a routerLink="/extra">ExtraPage</a> |
+<a routerLink="/extralazy">ExtralazyPage</a>
+<!-- vaihtuvat komponentit (spa-näkymät) tulevat <router-outlet> -tagien väliin-->
+<router-outlet></router-outlet>
+<ul>
+    <li>Reititys voidaan tehdä routerLink -direktiivillä (linkit) tai navigate()-metodilla (nappi) </li>
+    <li>Käytössä HashLocationStrategy: urlin hashtagi # erottaa palvelinpuolen ja asiakaspuolen polut</li>
+    <li>Jos laitat urliin jonkin muun client-polun kuin '/' tai '/other/1234', esitetään ErrorComponent</li>
+    <li>Reitti OtherComponentiin on 50% todennäköisyydellä suljettu LoginGuardilla</li>
+    <li>ExtraPage on omassa moduulissaan jossa on myös sen reititys</li>
+    <li>ExtralazyPage eroaa Extrapagesta siten että se ladataan muistiin vasta kun sen linkkiä klikataan</li>
+</ul>

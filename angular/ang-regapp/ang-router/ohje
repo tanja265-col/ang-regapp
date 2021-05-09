@@ -1,0 +1,5 @@
+Tee uusi minimaalinen projekti komennolla:
+
+ng new ang-router --minimal=true --inlineTemplate=false --inlineStyle=false
+
+ja kopioi app-kansio uuden projektin app-kansion päälle.
