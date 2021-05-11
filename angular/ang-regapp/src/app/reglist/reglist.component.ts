@@ -1,4 +1,3 @@
-i;
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
@@ -11,14 +10,15 @@ import { regService } from '../regs.service';
   styleUrls: ['./reglist.component.css'],
 })
 export class ReglistComponent implements OnInit {
-  regs: Regs[];
+  regs: registration[]; //luodaan regs-muuttuja, jonka arvoksi annetaan registration[]-tyhjä oliotaulukko.
 
-  //servicen käyttöön otto
-  constructor(private regservice: RegService) {}
+  //servicen käyttöön otto, reg.service.ts-tiedoston RegService-luokka
+  constructor(private regservice: regService) {}
 
   // hakee tiedot servisestä tähän komponenttiin
   getregs(): void {
-    this.regservice.getregs().subscribe((regs) => (this.regs = regs()));
+    // kutsutaan regservicen metodia
+    this.regservice.getRegistration().subscribe((regs) => (this.regs = regs));
   }
   // tämä on metodi joka suoritettaan automaattisesti aina kun
   // komponentti syntyy
@@ -26,30 +26,3 @@ export class ReglistComponent implements OnInit {
     this.getregs();
   }
 }
-
-/*
-import { Component, OnInit } from '@angular/core';
-import { Study } from '../dataclasses';
-import { HomepageService } from '../homepage.service';
-
-@Component({
-  selector: 'app-studies',
-  templateUrl: './studies.component.html',
-  styleUrls: ['./studies.component.css'],
-})
-export class StudiesComponent implements OnInit {
-  mystudies: Study[];
-
-  constructor(private hpservice: HomepageService) {}
-
-  getStudy(): void {
-    this.hpservice
-      .getStudy()
-      .subscribe((mystudies) => (this.mystudies = mystudies));
-  }
-
-  ngOnInit(): void {
-    this.getStudy();
-  }
-}
-*/

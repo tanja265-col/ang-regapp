@@ -1,6 +1,26 @@
 <h2>Ilmoittautuneet</h2>
-<ul>
-  <li *ngFor="let x of regs">
-    {{ x.id, x.name, x.email, x.food, x.saunailta }}
-  </li>
-</ul>
+
+<table *ngFor="let x of regs" class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nimi</th>
+      <th scope="col">Email</th>
+      <th scope="col">Ruoka</th>
+      <th scope="col">Saunailta</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>
+      {{ x.name }}
+    </td>
+    <td>
+      {{ x.email }}
+    </td>
+    <td>
+      {{ x.food }}
+    </td>
+    <td>
+      {{ x.sauna }}
+    </td>
+  </tr>
+</table>

@@ -9,13 +9,12 @@ export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const credentials = [{ username: 'qwerty999', password: 'qwerty999' }];
 
-    const regs: Regs[] = [
+    const regs = [
       {
-        id: 1,
         name: 'Tanja Koivunen',
         email: 'tanja@iki.fi',
         food: 'kala',
-        saunailta: 'joo',
+        sauna: 'joo',
       },
     ];
 

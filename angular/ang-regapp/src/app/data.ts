@@ -1,13 +1,13 @@
 class Data {
-  username: string | undefined;
-  password: string | undefined;
+  username: string;
+  password: string;
 }
 
 class registration {
-  name: string | undefined;
-  email: string | undefined;
-  food: string | undefined;
-  sauna: string | undefined;
+  name: string;
+  email: string;
+  food: string;
+  sauna: string;
 }
 
 export { Data, registration };

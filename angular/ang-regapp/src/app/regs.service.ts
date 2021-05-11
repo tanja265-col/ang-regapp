@@ -34,8 +34,8 @@ export class regService {
 
   // Tehdään palvelimelle pyyntö jolla haetaan data observablena
 
-  getRegitration(): Observable<regService[]> {
-    return this.http.get<regService[]>(this.regsurl);
+  getRegistration(): Observable<registration[]> {
+    return this.http.get<registration[]>(this.regsurl);
     // virheenkäsittely voidaan tehdä tähän
   }
 }

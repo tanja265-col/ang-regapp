@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { registration } from '../data';
 
 @Component({
   selector: 'app-regform',
@@ -8,13 +9,14 @@ import { Router } from '@angular/router';
 })
 export class RegformComponent implements OnInit {
   router: any;
+  formData: any;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onSubmit() {
-    console.log();
+  onSubmit(formData) {
+    console.log(formData);
   }
 
   navigateToList() {
