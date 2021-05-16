@@ -26,9 +26,9 @@ export class ReglistComponent implements OnInit {
   ngOnInit(): void {
     this.getregs();
   }
-  add(f: any): void {
-    this.regservice.addRegistration({}).subscribe((formData) => {
-      this.regs.push(f);
+  add(registration: any): void {
+    this.regservice.addRegistration({ registration }).subscribe((f) => {
+      this.regs.push(registration);
     });
   }
 }

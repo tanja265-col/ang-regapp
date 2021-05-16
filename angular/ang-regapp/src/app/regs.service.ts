@@ -38,7 +38,7 @@ export class regService {
   //liitetään eli injektoidaan HttpClient-olio tähän luokkaan konstruktorin argumenttina(Dependency injection)
   // http-olion avulla tehdään pyyntöjä serverille
   constructor(private http: HttpClient) {}
-  // tällä metodilla  rekistöitymiset serviceen: getRegistration(): any[]{return og(registration)};
+  // tällä metodilla  rekistöitymiset serviceen: addRegistration()
   // Tehdään palvelimelle pyyntö jolla haetaan data observablena
   // getRegistration palauttaa Observable jossa on taulukko joka sisältää any-tyyppisiä olioita
   // http-pyynnöt sisältävät metodin jolla pyyntö tehdään
