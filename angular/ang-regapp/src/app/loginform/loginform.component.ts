@@ -22,6 +22,9 @@ export class LoginformComponent implements OnInit {
   suojatulle sivulle. Autentikaatiota ei oikeasti pysty tekemään
   pelkästään asiakaspuolella vaan se vaatii aina palvelimen.
   Tässä autentikaatiota vain "feikataan"
+
+  
+
   */
 
   onSubmit(formdata: any, isvalid: boolean | null): void {

@@ -4,6 +4,7 @@ class Data {
 }
 
 class registration {
+  id: number;
   name: string;
   email: string;
   food: string;

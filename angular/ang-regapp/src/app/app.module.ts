@@ -26,7 +26,7 @@ import { LoginformComponent } from './loginform/loginform.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    //tämä pois kun vaihdetaan oikeaan serveriin
+    //tämä pois kun vaihdetaan oikeaan serveriin, tässä valetietokanna luonti
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
     }),

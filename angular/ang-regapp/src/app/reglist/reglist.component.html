@@ -3,6 +3,7 @@
 <table *ngFor="let x of regs" class="table">
   <thead>
     <tr>
+      <th scope="col">#</th>
       <th scope="col">Nimi</th>
       <th scope="col">Email</th>
       <th scope="col">Ruoka</th>
@@ -10,6 +11,9 @@
     </tr>
   </thead>
   <tr>
+    <td>
+      {{ x.id }}
+    </td>
     <td>
       {{ x.name }}
     </td>

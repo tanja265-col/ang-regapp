@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Testability } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { registration } from '../data';
+import { regService } from '../regs.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-regform',
@@ -8,15 +11,21 @@ import { registration } from '../data';
   styleUrls: ['./regform.component.css'],
 })
 export class RegformComponent implements OnInit {
-  router: any;
   formData: any;
+  registration: any;
+  regs: any;
+  value: any;
 
-  constructor() {}
+  constructor(private regService: regService, private router: Router) {}
 
   ngOnInit(): void {}
 
-  onSubmit(formData) {
-    console.log(formData);
+  onSubmit(f: NgForm) {
+    //console.log(f.value);
+    this.regService.addRegistration(f).subscribe(
+      (data) => console.log('Ilmoittautuminen onnistui', data),
+      (error) => console.error('Ilmoittautuminen epäonnistui', error)
+    );
   }
 
   navigateToList() {

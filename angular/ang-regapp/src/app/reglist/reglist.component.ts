@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { registration } from '../data';
 import { regService } from '../regs.service';
@@ -16,13 +16,19 @@ export class ReglistComponent implements OnInit {
   constructor(private regservice: regService) {}
 
   // hakee tiedot servisestä tähän komponenttiin
+  // eli servicen getregs tilaa (subscribe) observable, josta tieto saadaan ulos callbacilla.
   getregs(): void {
-    // kutsutaan regservicen metodia
-    this.regservice.getRegistration().subscribe((regs) => (this.regs = regs));
+    // kutsutaan regservicen metodia, tilataan observablelta taulukko
+    this.regservice.getregs().subscribe((regs) => (this.regs = regs));
   }
   // tämä on metodi joka suoritettaan automaattisesti aina kun
   // komponentti syntyy
   ngOnInit(): void {
     this.getregs();
+  }
+  add(f: any): void {
+    this.regservice.addRegistration({}).subscribe((formData) => {
+      this.regs.push(f);
+    });
   }
 }
