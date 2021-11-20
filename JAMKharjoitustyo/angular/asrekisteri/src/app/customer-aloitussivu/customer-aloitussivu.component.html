@@ -1,0 +1,156 @@
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container-fluid">
+    <h1 style="color: aliceblue">Asiakasrekisteri</h1>
+    <div class="d-flex">
+      <button
+        (click)="(clickAddCustomer)"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        class="btn btn-success"
+      >
+        Lisää asiakas
+      </button>
+    </div>
+  </div>
+</nav>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Asiakas ID</th>
+      <th scope="col">Nimi</th>
+      <th scope="col">Sähköposti</th>
+      <th scope="col">Osoite</th>
+      <th scope="col">Info</th>
+      <th scope="col">Aktiivinen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of customerData">
+      <td>{{ row.id }}</td>
+      <td>{{ row.name }}</td>
+      <td>{{ row.email }}</td>
+      <td>{{ row.address }}</td>
+      <td>{{ row.info }}</td>
+      <td>{{ row.active }}</td>
+      <td>
+        <button
+          (click)="onEdit(row)"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          class="btn btn-info"
+        >
+          Muokkaa
+        </button>
+        <button (click)="deleteCustomer(row)" class="btn btn-danger mx-3">
+          Poista
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Uusi Asiakas</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nimi</label>
+            <input
+              type="text"
+              formControlName="name"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Sähköposti</label
+            >
+            <input
+              type="email"
+              formControlName="email"
+              class="form-control"
+              id="exampleInputPassword1"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Osoite</label>
+            <input
+              type="text"
+              formControlName="address"
+              class="form-control"
+              id="exampleInputPassword1"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Info</label>
+            <input
+              type="text"
+              formControlName="info"
+              class="form-control"
+              id="exampleInputPassword1"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="mb-3 form-label" for="exampleCheck1">Active</label>
+            <input
+              type="text"
+              formControlName="active"
+              class="form-control"
+              id="exampleCheck1"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="cancel"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Sulje
+        </button>
+        <button
+          id="add"
+          type="button"
+          (click)="postCustomerDetails()"
+          class="btn btn-primary"
+        >
+          Tallenna
+        </button>
+        <button
+          *ngIf="showUpdate"
+          (click)="updateCustomerDetails()"
+          type="button"
+          id="update"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Muokkaa
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
